@@ -5,6 +5,7 @@ const normalBtn = document.querySelector("#normalBtn");
 const rainbowBtn = document.querySelector("#rainbowBtn");
 const shadeBtn = document.querySelector("#shadeBtn");
 const eraseBtn = document.querySelector("#eraseBtn");
+const colorPicker = document.querySelector("#colorPicker");
 
 let currentMode = "normal"; // normal, rainbow, shade
 
@@ -17,7 +18,56 @@ function createGrid(size) {
     div.dataset.hoverCount = 0; // for shading mode
     container.appendChild(div);
   }
+
+  // Adjust square size dynamically
+  const squares = document.querySelectorAll(".grid-square");
+  squares.forEach((square) => {
+    square.style.flex = `0 0 calc(100% / ${size})`;
+  });
+
+  addHoverEffect();
 }
+
+// Function to get random RGB color
+function randomColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r},${g},${b})`;
+}
+
+// Custom color
+colorPicker.addEventListener("input", () => {
+  currentMode = "custom";
+});
+
+// Function to add hover effect based on mode
+function addHoverEffect() {
+  const square = document.querySelectorAll(".grid-square");
+  square.forEach((square) => {
+    square.addEventListener("mouseover", () => {
+      if (currentMode === "normal") {
+        square.style.backgroundColor = "black";
+      } else if (currentMode === "custom") {
+        square.style.backgroundColor = colorPicker.value;
+      } else if (currentMode === "shade") {
+        let count = parseInt(square.dataset.hoverCount);
+        if (count < 10) {
+          count++;
+          square.dataset.hoverCount = count;
+          square.style.backgroundColor = `rgba(0,0,0,${count / 10})`;
+        }
+      }
+    });
+  });
+}
+
+// Reset button event
+resetBtn.addEventListener("click", () => {
+  let size = prompt("Enter grid size (max 100)");
+  size = Math.min(size, 100);
+  if (size && size > 0) createGrid(size);
+});
 
 // Initial default grid
 createGrid(16);
