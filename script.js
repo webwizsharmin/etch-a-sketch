@@ -1,15 +1,7 @@
-// Dynamic grid creation
+// All buttons here
 const container = document.querySelector("#container");
-
-for (let i = 1; i < 257; i++) {
-  const div = document.createElement("div");
-  div.classList.add("grid-square");
-  container.appendChild(div);
-  // console.log(div);
-}
-
-const gridSquare = document.querySelector(".grid-square");
-
-gridSquare.addEventListener("mouseover", () => {
-  gridSquare.style.backgroundColor = "red";
-});
+const resetBtn = document.querySelector("#resetBtn");
+const normalBtn = document.querySelector("#normalBtn");
+const rainbowBtn = document.querySelector("#rainbowBtn");
+const shadeBtn = document.querySelector("#shadeBtn");
+const eraseBtn = document.querySelector("#eraseBtn");
