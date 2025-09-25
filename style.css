@@ -1,0 +1,23 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#container {
+  /* border: 1px solid green; */
+  display: flex;
+  flex-wrap: wrap;
+  width: 960px;
+  height: 960px;
+}
+
+#container > div {
+  border: 1px solid black;
+  flex: 1 0 calc(100% / 16);
+  aspect-ratio: 1 / 1;
+}
+
+.grid-square:hover {
+  background-color: rgba(230, 24, 24, 0.379);
+}
