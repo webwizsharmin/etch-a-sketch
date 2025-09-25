@@ -50,6 +50,8 @@ function addHoverEffect() {
         square.style.backgroundColor = "black";
       } else if (currentMode === "custom") {
         square.style.backgroundColor = colorPicker.value;
+      } else if (currentMode === "rainbow") {
+        square.style.backgroundColor = randomColor();
       } else if (currentMode === "shade") {
         let count = parseInt(square.dataset.hoverCount);
         if (count < 10) {
@@ -68,6 +70,20 @@ resetBtn.addEventListener("click", () => {
   size = Math.min(size, 100);
   if (size && size > 0) createGrid(size);
 });
+
+// Erase the canvas without changing grid
+eraseBtn.addEventListener("click", () => {
+  const squares = document.querySelectorAll(".grid-square");
+  squares.forEach((square) => {
+    square.style.backgroundColor = "#f0f0f0"; // reset to default background
+    square.dataset.hoverCount = 0; //reset shading count
+  });
+});
+
+// Mode buttons
+normalBtn.addEventListener("click", () => (currentMode = "normal"));
+rainbowBtn.addEventListener("click", () => (currentMode = "rainbow"));
+shadeBtn.addEventListener("click", () => (currentMode = "shade"));
 
 // Initial default grid
 createGrid(16);
