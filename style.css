@@ -16,7 +16,9 @@ body {
   margin-bottom: 10px;
 }
 
-button {
+button,
+input,
+label {
   margin: 0 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -38,6 +40,6 @@ button {
   background-color: #f0f0f0;
 }
 
-.grid-square:hover {
+/* .grid-square:hover {
   background-color: rgba(230, 24, 24, 0.379);
-}
+} */
